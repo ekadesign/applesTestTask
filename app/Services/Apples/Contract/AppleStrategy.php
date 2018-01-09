@@ -9,7 +9,10 @@
 namespace App\Services\Apples\Contract;
 
 
+use App\User;
+
 interface AppleStrategy {
 
-    public function returnApples();
+    public function returnApples(User $user);
+
 }

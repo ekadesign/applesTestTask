@@ -28,7 +28,8 @@
             <ul class="list-group">
                 @foreach( $users as $user )
                     <li class="list-group-item">
-                        {{ $user->name }} has {{ $user->getApplesCount() }} apples <a class="btn btn-xs btn-danger pull-right" href="{{ url('/take-apple/'.$user->id) }}">Grab apple</a>
+                        {{ $user->name }} has {{ $user->getApplesCount() }} apples
+                        <a class="btn btn-xs btn-danger pull-right" href="{{ url('/take-apple/'.$user->id) }}">Grab apple</a>
                     </li>
                 @endforeach
             </ul>

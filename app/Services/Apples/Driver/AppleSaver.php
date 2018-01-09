@@ -18,39 +18,23 @@ class AppleSaver {
 
     private $apples;
 
-    private $user;
+    private $strategyContext;
 
-    public function __construct($user_id) {
+    public function __construct(StrategyContext $strategyContext) {
 
-        $this->user = User::find($user_id);
-
-        $this->checkStrategy();
+        $this->strategyContext = $strategyContext;
     }
 
-    public function checkStrategy() {
+    public function save(User $user) {
 
-        if(!$this->user->apples->count()){
-            $this->apples = new NotExistsStrategy();
-        }
+        $this->apples = $this->strategyContext->supports($user);
 
-        if($this->user->apples->count() && $this->user->apples->first()->id % 2 == 0){
-            $this->apples = new EvenStrategy();
-        }
-
-        if($this->user->apples->count() && $this->user->apples->first()->id % 2 == 1){
-            $this->apples = new OddStrategy();
-        }
-    }
-
-    public function save() {
-
-        $this->apples = $this->apples->returnApples();
-
+        //TODO нет яблок сделать
         if (!$this->apples->count()) return view('site.home');
 
         $apple = $this->apples->first();
 
-        $apple->grabbed_by = $this->user->id;
+        $apple->grabbed_by = $user->id;
 
         $apple->save();
     }

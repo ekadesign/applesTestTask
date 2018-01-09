@@ -11,11 +11,14 @@ namespace App\Services\Apples\Strategies;
 
 use App\Apple;
 use App\Services\Apples\Contract\AppleStrategy;
+use App\User;
 
 class NotExistsStrategy implements AppleStrategy {
 
-    public function returnApples() {
-        return Apple::whereNull('grabbed_by');
+    public function returnApples(User $user) {
+        if(!$user->apples->count())
+            return Apple::whereNull('grabbed_by');
+        return false;
     }
 
 }

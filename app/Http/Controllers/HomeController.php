@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Apples\Driver\AppleSaver;
+use App\Services\Apples\Driver\StrategyContext;
 use App\User;
 
 use App\Http\Requests;
@@ -10,6 +11,13 @@ use App\Apple;
 
 class HomeController extends Controller
 {
+
+    private $appleSaver;
+
+    public function __construct(AppleSaver $appleSaver)
+    {
+        $this->appleSaver = $appleSaver;
+    }
 
     /**
      * @return string
@@ -30,7 +38,9 @@ class HomeController extends Controller
      */
     public function getTakeApple( $user_id ) {
 
-        (new AppleSaver($user_id))->save();
+        $user = User::find($user_id);
+
+        $this->appleSaver->save($user);
 
         \Log::info("apple grabbed by {$user_id}");
 
