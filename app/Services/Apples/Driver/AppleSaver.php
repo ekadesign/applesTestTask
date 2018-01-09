@@ -28,6 +28,7 @@ class AppleSaver {
     }
 
     public function checkStrategy() {
+
         if(!$this->user->apples->count()){
             $this->apples = new NotExistsStrategy();
         }
@@ -44,6 +45,8 @@ class AppleSaver {
     public function save() {
 
         $this->apples = $this->apples->returnApples();
+
+        if (!$this->apples->count()) return view('site.home');
 
         $apple = $this->apples->first();
 

@@ -31,7 +31,7 @@ class User extends Authenticatable
 
 
     public function getApplesCount() {
-        return 0;
+        return $this->apples()->count();
     }
 
 
