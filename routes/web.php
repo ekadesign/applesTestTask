@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/', 'HomeController@getHome' );
-Route::get('/take-apple/{user_id}', 'HomeController@getTakeApple' );
-Route::get('/free-apples', 'HomeController@getFreeApples' );
+Route::get('/', 'HomeController@getHome' )->name('home');
+Route::get('/take-apple/{user_id}', 'HomeController@getTakeApple' )->name('takeapple');
+Route::get('/free-apples', 'HomeController@getFreeApples' )->name('freeapples');

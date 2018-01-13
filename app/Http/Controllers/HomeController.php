@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Basket;
 use App\Services\Apples\Driver\AppleSaver;
-use App\Services\Apples\Driver\StrategyContext;
 use App\User;
 
 use App\Http\Requests;
 use App\Apple;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,7 @@ class HomeController extends Controller
 
         $basketApples = Apple::WhereNull('grabbed_by')->get();
 
-        return view('site.home', compact('users', 'basketApples'));
+        return view('site.home', compact('users', 'basketApples', 'basket'));
     }
 
 
@@ -40,11 +41,21 @@ class HomeController extends Controller
 
         $user = User::find($user_id);
 
-        $this->appleSaver->save($user);
+        $basket = Basket::find(1);
 
-        \Log::info("apple grabbed by {$user_id}");
+        $currentTime = Carbon::now();
 
-        return redirect('/');
+        if($currentTime->diffInMinutes($basket->updated_at) > 1) {
+
+            $this->appleSaver->save($user);
+
+            $basket->touch();
+
+            return redirect()->route('home');
+        }
+
+        return redirect()->route('home')->with('message', 'увы и ах меньше минуты с момента последнего обращения к корзине');
+
     }
 
 
@@ -53,9 +64,19 @@ class HomeController extends Controller
      */
     public function getFreeApples() {
 
-        \Log::info("freedom");
+        $basket = Basket::find(1);
 
-        return redirect('/');
+        //clear updated_at for the basket model
+        $basket->setUpdatedAt($basket->freshTimestamp());
+
+        $apples = Apple::all();
+        //clear apples
+        foreach ($apples as $apple){
+            $apple->grabbed_by = null;
+            $apple->save();
+        }
+
+        return redirect()->route('home')->with('success_message', 'Очищено');
     }
 
 

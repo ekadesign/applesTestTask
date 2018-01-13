@@ -21,6 +21,19 @@
     </div>
 
     <div class="container">
+        @if (session('message'))
+            <div class="alert alert-danger">
+                <a class="close" data-dismiss="alert">×</a>
+                {{ session('message') }}
+            </div>
+        @endif
+
+            @if (session('success_message'))
+                <div class="alert alert-success">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ session('success_message') }}
+                </div>
+            @endif
 
         <div class="col-md-6">
 

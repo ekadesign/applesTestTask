@@ -8,10 +8,6 @@
 
 namespace App\Services\Apples\Driver;
 
-
-use App\Services\Apples\Strategies\EvenStrategy;
-use App\Services\Apples\Strategies\NotExistsStrategy;
-use App\Services\Apples\Strategies\OddStrategy;
 use App\User;
 
 class AppleSaver {
@@ -30,13 +26,15 @@ class AppleSaver {
         $this->apples = $this->strategyContext->supports($user);
 
         //TODO нет яблок сделать
-        if (!$this->apples->count()) return view('site.home');
+        if (!$this->apples->count()) return redirect()->route('home')->with('message', 'К сожалению яблоки для вас закончились');
 
         $apple = $this->apples->first();
 
         $apple->grabbed_by = $user->id;
 
         $apple->save();
+
+        return redirect()->route('home');
     }
 
 }
