@@ -30,6 +30,11 @@ class AppleSaver {
 
         $this->apples = $this->strategyContext->supports($user);
 
+        if (!$this->apples->count()) {
+
+            session()->flash('message', 'Яблочки кончились');
+            return false;
+        }
 
         if ($currentTime->diffInSeconds($basket->updated_at) >= config('services.basket_time')) {
 
@@ -39,13 +44,12 @@ class AppleSaver {
 
             $basket->touch();
 
+            session()->flash('message','Держи яблочко :)');
+            return true;
         }
 
-        if (!$this->apples->count()) {
-            return redirect()->route('home')->with('message', 'К сожалению яблоки для вас закончились');
-        }
-
-        return redirect()->route('home')->with('message', 'увы и ах меньше минуты с момента последнего обращения к корзине');
+        session()->flash('message','увы и ах меньше минуты с момента последнего обращения к корзине');
+        return false;
     }
 
 }

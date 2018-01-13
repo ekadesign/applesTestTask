@@ -42,8 +42,7 @@ class HomeController extends Controller
 
         $this->appleSaver->save($user);
 
-        return redirect()->route('home')->with('success_message', 'Держи яблочко :)');
-
+        return redirect()->route('home');
     }
 
 
@@ -64,7 +63,7 @@ class HomeController extends Controller
             $apple->save();
         }
 
-        return redirect()->route('home')->with('success_message', 'Очищено');
+        return redirect()->route('home')->with('message', 'Очищено');
     }
 
 
