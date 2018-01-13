@@ -34,7 +34,7 @@ class AppleSaver {
             return redirect()->route('home')->with('message', 'К сожалению яблоки для вас закончились');
         }
 
-        if ($currentTime->diffInMinutes($basket->updated_at) >= 1) {
+        if ($currentTime->diffInSeconds($basket->updated_at) >= config('services.basket_time')) {
 
             $apple = $this->apples->first();
             $apple->grabbed_by = $user->id;
