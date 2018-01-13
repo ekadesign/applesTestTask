@@ -9,6 +9,7 @@
 namespace App\Services\Apples\Driver;
 
 use App\User;
+use Carbon\Carbon;
 
 class AppleSaver {
 
@@ -23,16 +24,25 @@ class AppleSaver {
 
     public function save(User $user) {
 
+        $basket = Basket::find(1);
+        $currentTime = Carbon::now();
+
         $this->apples = $this->strategyContext->supports($user);
 
-        //TODO нет яблок сделать
-        if (!$this->apples->count()) return redirect()->route('home')->with('message', 'К сожалению яблоки для вас закончились');
+        if (!$this->apples->count()) {
+            return redirect()->route('home')->with('message', 'К сожалению яблоки для вас закончились');
+        }
 
-        $apple = $this->apples->first();
+        if ($currentTime->diffInMinutes($basket->updated_at) >= 1) {
 
-        $apple->grabbed_by = $user->id;
+            $apple = $this->apples->first();
+            $apple->grabbed_by = $user->id;
+            $apple->save();
 
-        $apple->save();
+            $basket->touch();
+
+            return redirect()->route('home');
+        }
 
         return redirect()->route('home');
     }

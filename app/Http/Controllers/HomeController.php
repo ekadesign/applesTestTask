@@ -8,7 +8,6 @@ use App\User;
 
 use App\Http\Requests;
 use App\Apple;
-use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -41,18 +40,7 @@ class HomeController extends Controller
 
         $user = User::find($user_id);
 
-        $basket = Basket::find(1);
-
-        $currentTime = Carbon::now();
-
-        if($currentTime->diffInMinutes($basket->updated_at) > 1) {
-
-            $this->appleSaver->save($user);
-
-            $basket->touch();
-
-            return redirect()->route('home');
-        }
+        $this->appleSaver->save($user);
 
         return redirect()->route('home')->with('message', 'увы и ах меньше минуты с момента последнего обращения к корзине');
 
@@ -67,7 +55,7 @@ class HomeController extends Controller
         $basket = Basket::find(1);
 
         //clear updated_at for the basket model
-        $basket->setUpdatedAt($basket->freshTimestamp());
+        $basket->setUpdatedAt(null);
 
         $apples = Apple::all();
         //clear apples
