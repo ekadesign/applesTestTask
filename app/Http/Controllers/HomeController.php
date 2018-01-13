@@ -42,7 +42,7 @@ class HomeController extends Controller
 
         $this->appleSaver->save($user);
 
-        return redirect()->route('home')->with('message', 'увы и ах меньше минуты с момента последнего обращения к корзине');
+        return redirect()->route('home')->with('success_message', 'Держи яблочко :)');
 
     }
 
