@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', 'HomeController@getHome' )->name('home');
-Route::get('/take-apple/{user_id}', 'HomeController@getTakeApple' )->name('takeapple');
+Route::get('/', 'HomeController@index' )->name('index');
+Route::get('/take-apple/{user_id}', 'HomeController@giveAppleToUser' )->name('giveapple');
 Route::get('/free-apples', 'HomeController@getFreeApples' )->name('freeapples');

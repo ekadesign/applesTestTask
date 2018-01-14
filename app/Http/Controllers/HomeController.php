@@ -9,44 +9,44 @@ use App\User;
 use App\Http\Requests;
 use App\Apple;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
 
     private $appleSaver;
 
-    public function __construct(AppleSaver $appleSaver)
-    {
+    public function __construct(AppleSaver $appleSaver) {
         $this->appleSaver = $appleSaver;
     }
 
     /**
      * @return string
      */
-    public function getHome() {
+    public function index() {
 
         $users = User::all();
 
         $basketApples = Apple::WhereNull('grabbed_by')->get();
 
-        return view('site.home', compact('users', 'basketApples', 'basket'));
+        return view('site.home', compact('users', 'basketApples'));
     }
 
 
     /**
-     * @param int $user_id
+     * gives apple to user
+     * @param int $id as user ID
      * @return string
      */
-    public function getTakeApple( $user_id ) {
+    public function giveAppleToUser($id) {
 
-        $user = User::find($user_id);
+        $user = User::find($id);
 
         $this->appleSaver->save($user);
 
-        return redirect()->route('home');
+        return redirect()->route('index');
     }
 
 
     /**
+     * clear apples and reset basket time
      * @return string
      */
     public function getFreeApples() {
@@ -54,16 +54,17 @@ class HomeController extends Controller
         $basket = Basket::find(1);
 
         //clear updated_at for the basket model
-        $basket->setUpdatedAt(null);
-
+        $basket->updated_at = null;
+        $basket->timestamps = false;
+        $basket->save();
         $apples = Apple::all();
         //clear apples
-        foreach ($apples as $apple){
+        foreach ($apples as $apple) {
             $apple->grabbed_by = null;
             $apple->save();
         }
 
-        return redirect()->route('home')->with('message', 'Очищено');
+        return redirect()->route('index')->with('message', 'Очищено');
     }
 
 
