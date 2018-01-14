@@ -17,7 +17,7 @@ class NotExistsStrategy implements AppleStrategy {
 
     public function returnApples(User $user) {
         if(!$user->apples->count())
-            return Apple::whereNull('grabbed_by');
+            return Apple::whereNull('grabbed_by')->get();
         return false;
     }
 

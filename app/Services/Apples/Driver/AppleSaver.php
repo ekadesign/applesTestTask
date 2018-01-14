@@ -36,7 +36,7 @@ class AppleSaver {
             return false;
         }
 
-        if ($currentTime->diffInSeconds($basket->updated_at) >= config('services.basket_time')) {
+        if ($currentTime->diffInSeconds($basket->updated_at) >= config('services.basket_time') || is_null($basket->updated_at)) {
 
             $apple = $this->apples->first();
             $apple->grabbed_by = $user->id;
