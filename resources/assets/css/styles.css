@@ -1,0 +1,92 @@
+.container {
+  margin-top: 50px;
+  width: 1000px;
+}
+
+.progress-icon {
+  background: url("../images/ajax-loader.gif") 100% 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background-size: cover;
+  vertical-align: middle;
+  margin: 0 5px;
+  position: absolute; }
+
+.contents-block {
+  margin: 20px auto;
+  border: 1px solid black; }
+
+.find-object-form {
+  padding: 20px; }
+
+.get-doc-btn {
+  width: 200px; }
+
+html, body, #editor {
+  margin: 0;
+  height: 100%;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333; }
+
+textarea, #editor div {
+  display: inline-block;
+  width: 49%;
+  height: 100%;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 20px; }
+
+textarea {
+  border: none;
+  border-right: 1px solid #ccc;
+  resize: none;
+  outline: none;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  font-family: 'Monaco', courier, monospace;
+  padding: 20px; }
+
+code {
+  color: #f66; }
+
+.vipiska-egrp {
+  background: rgba(119, 119, 119, 0.33);
+  padding: 20px 0px; }
+  .vipiska-egrp table {
+    font: 12pt Times New Roman;
+    border-collapse: inherit; }
+  .vipiska-egrp p, .vipiska-egrp .t {
+    margin: 10pt 0 10pt 0; }
+  .vipiska-egrp tr, .vipiska-egrp .note {
+    vertical-align: top; }
+  .vipiska-egrp table, .vipiska-egrp .file {
+    text-align: justify; }
+  .vipiska-egrp .file {
+    width: 17cm;
+    margin: auto;
+    box-shadow: gray 2px 2px 10px;
+    border: 20px solid white;
+    background: white; }
+  .vipiska-egrp .edoc, .vipiska-egrp .ndoc, .vipiska-egrp .rdoc {
+    margin-bottom: 2cm; }
+  .vipiska-egrp .vc {
+    vertical-align: middle; }
+  .vipiska-egrp .ul, .vipiska-egrp .ful, .vipiska-egrp .note, .vipiska-egrp .c {
+    text-align: center; }
+  .vipiska-egrp .ul, .vipiska-egrp .ful {
+    vertical-align: bottom;
+    border-bottom: solid 1pt black; }
+  .vipiska-egrp .ful {
+    font-size: 85%; }
+  .vipiska-egrp .note {
+    font-size: 50%;
+    line-height: normal; }
+  .vipiska-egrp .wb {
+    word-break: break-all; }
+  .vipiska-egrp .NoticeHeaderMargin, .vipiska-egrp .NoticeHeaderHeight, .vipiska-egrp .ExtractHeaderMargin {
+    display: none; }
+
+/*# sourceMappingURL=styles.css.map */

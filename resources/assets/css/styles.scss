@@ -1,0 +1,122 @@
+
+.container {
+  width: 1000px;
+}
+
+
+.progress-icon {
+  background: url("../images/ajax-loader.gif") 100% 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background-size: cover;
+  vertical-align: middle;
+  margin: 0 5px;
+  position: absolute;
+}
+
+.contents-block {
+  margin: 20px auto;
+  border: 1px solid black;
+}
+
+.find-object-form {
+  padding: 20px;
+}
+
+
+.get-doc-btn {
+  width: 200px;
+}
+
+
+html, body, #editor {
+  margin: 0;
+  height: 100%;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+}
+
+textarea, #editor div {
+  display: inline-block;
+  width: 49%;
+  height: 100%;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+textarea {
+  border: none;
+  border-right: 1px solid #ccc;
+  resize: none;
+  outline: none;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  font-family: 'Monaco', courier, monospace;
+  padding: 20px;
+}
+
+code {
+  color: #f66;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.vipiska-egrp {
+
+  background: rgba(119, 119, 119, 0.33);
+  padding: 20px 0px;
+
+  table {
+    font: 12pt Times New Roman;
+    border-collapse: inherit;
+  }
+
+  p, .t {
+    margin: 10pt 0 10pt 0
+  }
+
+  tr, .note {
+    vertical-align: top
+  }
+
+  table, .file {
+    text-align: justify;
+
+  }
+
+  .file {
+    width: 17cm;
+    margin: auto;
+    box-shadow: gray 2px 2px 10px;
+    border: 20px solid white;
+    background: white;
+  }
+
+  .edoc, .ndoc, .rdoc {
+    margin-bottom: 2cm
+  }
+
+  .vc { vertical-align: middle }
+  .ul, .ful, .note, .c { text-align: center }
+  .ul, .ful { vertical-align: bottom; border-bottom: solid 1pt black }
+  .ful { font-size: 85% }
+  .note { font-size: 50%; line-height: normal }
+  .wb { word-break: break-all }
+  .NoticeHeaderMargin, .NoticeHeaderHeight, .ExtractHeaderMargin { display: none }
+
+}
